@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IUserLogin } from '../shared/interfaces/IUserLogin';
 import { LoginRegisterService } from '../services/login-register.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +18,7 @@ export class LoginComponent {
   });
 
   private loginRegisterService = inject(LoginRegisterService);
+  private router = inject(Router);
 
   login() {
     if (this.loginForm.invalid) return;
@@ -25,9 +27,10 @@ export class LoginComponent {
       email: this.loginForm.get('email')?.value!, 
       password: this.loginForm.get('password')?.value! 
     }
-
-    this.loginRegisterService.login(user);
-
-    //alert('Calling backend to login');
+    console.log(user)
+    this.loginRegisterService.login(user).subscribe((user) => {
+      console.log(user)
+      this.router.navigateByUrl('/home');
+    });
   }
 }

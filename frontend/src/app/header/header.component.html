@@ -7,7 +7,7 @@
         <i class="material-icons">{{ isMenuOpen ? "close" : "menu" }}</i>
       </li>
       <li class="menu" [class.is-open]="isMenuOpen">
-        <a href="#" class="menu-item">Home</a>
+        <a routerLink="home" class="menu-item">Home</a>
         <a href="#" class="menu-item">About</a>
         <a
           [routerLink]="['/login']"
