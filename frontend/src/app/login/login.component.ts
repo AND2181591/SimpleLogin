@@ -27,9 +27,7 @@ export class LoginComponent {
       email: this.loginForm.get('email')?.value!, 
       password: this.loginForm.get('password')?.value! 
     }
-    console.log(user)
     this.loginRegisterService.login(user).subscribe((user) => {
-      console.log(user)
       this.router.navigateByUrl('/home');
     });
   }

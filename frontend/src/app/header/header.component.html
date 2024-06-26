@@ -7,15 +7,20 @@
         <i class="material-icons">{{ isMenuOpen ? "close" : "menu" }}</i>
       </li>
       <li class="menu" [class.is-open]="isMenuOpen">
-        <a routerLink="home" class="menu-item">Home</a>
-        <a href="#" class="menu-item">About</a>
+        <ng-container *ngIf="user.token">
+          <a routerLink="home" class="menu-item">Home</a>
+          <a href="#" class="menu-item">About</a>
+        </ng-container>
+        
         <a
+          *ngIf="!user.token"
           [routerLink]="['/login']"
           routerLinkActive="router-link-active"
           class="menu-item"
           >Sign in / Register</a
         >
         <a href="#" class="menu-item">Contact</a>
+        <a *ngIf="user.token" [routerLink]="['/login']" class="menu-item" (click)="onSignOut()">Sign out</a>
       </li>
     </ul>
   </nav>
