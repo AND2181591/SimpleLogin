@@ -20,7 +20,6 @@ app.post('/api/login', (req, res) => {
     } else {
         res.status(400).send('Email or password is not valid');
     }
-    res.send(sample_users)
 });
 
 const generateTokenResponse = (user: any) => {
