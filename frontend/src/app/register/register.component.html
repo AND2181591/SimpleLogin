@@ -1,0 +1,90 @@
+<form [formGroup]="registerForm" (submit)="register()" autocomplete="new-password">
+    <h1>Register</h1>
+
+    <div class="form-control">
+        <label for="firstName">First Name</label>
+        <input
+            formControlName="firstName"
+            id="first-name"
+            type="text"
+        />
+        <p class="field-error" *ngIf="
+            registerForm['controls'].firstName.touched &&   
+            registerForm['controls'].firstName.dirty &&  
+            registerForm['controls'].firstName.errors?.['required']">
+            First Name is required
+        </p>
+    </div>
+
+    <div class="form-control">
+        <label for="lastName">Last Name</label>
+        <input
+            formControlName="lastName"
+            id="last-name"
+            type="text"
+        />
+        <p class="field-error" *ngIf="
+            registerForm['controls'].lastName.touched &&   
+            registerForm['controls'].lastName.dirty &&  
+            registerForm['controls'].lastName.errors?.['required']">
+            Last Name is required
+        </p>
+    </div>
+  
+    <div class="form-control">
+        <label for="email">Email</label>
+        <input
+            formControlName="email"
+            id="email"
+            autocomplete="new-password"
+            type="email"
+        />
+        <p class="field-error" *ngIf="
+            registerForm['controls'].email.touched &&   
+            registerForm['controls'].email.dirty &&  
+            registerForm['controls'].email.errors?.['required']">
+            Email is required
+        </p>
+    </div>
+  
+    <div class="form-control">
+        <label for="password">Password</label>
+        <input
+            formControlName="password"
+            id="password"
+            autocomplete="new-password"
+            type="password"
+        />
+        <p class="field-error" *ngIf="
+            registerForm['controls'].password.touched &&   
+            registerForm['controls'].password.dirty &&  
+            registerForm['controls'].password.errors?.['required']">
+            Password is required
+        </p>
+    </div>
+
+    <div class="form-control">
+        <label for="confirmPassword">Confirm Password</label>
+        <input
+            formControlName="confirmPassword"
+            id="confirm-password"
+            type="password"
+        />
+        <p class="field-error" *ngIf="
+            registerForm['controls'].confirmPassword.touched &&   
+            registerForm['controls'].confirmPassword.dirty &&  
+            registerForm['controls'].confirmPassword.errors?.['required']">
+            Confirm Password is required
+        </p>
+        <p class="field-error" 
+            *ngIf="registerForm.errors?.['PasswordNoMatch']">
+            Password and Confirm Password does not match
+        </p>
+    </div>
+  
+    <button [disabled]="!registerForm.valid" type="submit">Register &#8594;</button>
+
+    <div class="signin-container">
+      <p>Already have an account? <a routerLink="/sign-in">Sign In Here</a></p>
+    </div>
+  </form>

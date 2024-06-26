@@ -22,6 +22,19 @@ app.post('/api/login', (req, res) => {
     }
 });
 
+app.post('/api/register', (req, res) => {
+    const user = req.body;
+    const newUser = { 
+        displayName: user.firstName + ' ' + user.lastName, 
+        email: user.email, 
+        password: user.password
+    };
+    sample_users.push(newUser);
+
+    console.log(sample_users)
+    res.send(generateTokenResponse(newUser));
+});
+
 const generateTokenResponse = (user: any) => {
     const token = jwt.sign({
         email: user.email

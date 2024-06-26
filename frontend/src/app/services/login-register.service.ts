@@ -3,7 +3,8 @@ import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { User } from '../shared/models/User';
 import { HttpClient } from '@angular/common/http';
 import { IUserLogin } from '../shared/interfaces/IUserLogin';
-import { LOGIN_URL } from '../shared/constants/urls';
+import { LOGIN_URL, REGISTER_URL } from '../shared/constants/urls';
+import { IUserRegister } from '../shared/interfaces/IUserRegister';
 
 const USER_KEY = 'User';
 
@@ -33,6 +34,20 @@ export class LoginRegisterService {
         }
       })
     );
+  }
+
+  public register(user: IUserRegister): Observable<User> {
+    return this.http.post<User>(REGISTER_URL, user).pipe(
+      tap({
+        next: (user) => {
+          this.setUserToLocalStorage(user);
+          this.userSubject.next(user);
+        }, 
+        error: (errorResponse) => {
+          alert(errorResponse);
+        }
+      })
+    )
   }
 
   public logout(): void {

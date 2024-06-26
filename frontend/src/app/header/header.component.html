@@ -14,13 +14,13 @@
         
         <a
           *ngIf="!user.token"
-          [routerLink]="['/login']"
+          [routerLink]="['/sign-in']"
           routerLinkActive="router-link-active"
           class="menu-item"
           >Sign in / Register</a
         >
         <a href="#" class="menu-item">Contact</a>
-        <a *ngIf="user.token" [routerLink]="['/login']" class="menu-item" (click)="onSignOut()">Sign out</a>
+        <a *ngIf="user.token" [routerLink]="['/sign-in']" class="menu-item" (click)="onSignOut()">Sign out</a>
       </li>
     </ul>
   </nav>
